@@ -1,1 +1,4 @@
-print("hello test")
+import utils
+
+
+url = 'https://demoblaze.com/'
