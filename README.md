@@ -41,6 +41,6 @@ Packages:
       def test_stock_value():
         <code>
 ```
-  TestStocks - a test suite (class)
-  test_stock_price - a test case (function)
-  test_stock_value - a test case (function)
+* TestStocks - a test suite (class)
+* test_stock_price - a test case (function)
+* test_stock_value - a test case (function)
