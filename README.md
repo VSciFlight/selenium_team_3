@@ -34,11 +34,11 @@ Packages:
  
  for example:
     class TestStocks:
-        def test_stock_price():
-            <code>
-  
-        def test_stock_value():
-            <code>
+      def test_stock_price():
+        <code>
+      
+      def test_stock_value():
+        <code>
               
   TestStocks - a test suite (class)
   test_stock_price - a test case (function)
