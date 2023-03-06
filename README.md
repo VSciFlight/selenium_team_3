@@ -24,3 +24,4 @@ CLASS:
 Packages:
   - Selenium
   - Requests
+  - unittest
