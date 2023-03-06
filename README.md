@@ -29,7 +29,7 @@ Packages:
 
 
  TEST SUITE
- Test Suite is defined by a class in a file
+ Test Suite is defined by a class in a file.
  Test Case is defined as a function within the Test Suite
  
  for example:
