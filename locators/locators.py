@@ -2,7 +2,9 @@ import utils as u
 
 class Locator:
 
+    locProd = dict()
     locHome = dict()
+
 
     # Header
     locHome['Head_Home'] = (u.By.XPATH, '//a[text()="Home "]')
@@ -51,3 +53,9 @@ class Locator:
     locContact['X_btn'] = (u.By.XPATH, "/html/body/div[1]/div/div/div[1]/button/span")
     locContact['Close_btn'] = (u.By.XPATH, "/html/body/div[1]/div/div/div[3]/button[1]")
     locContact['Send_Message_btn'] = (u.By.XPATH, "/html/body/div[1]/div/div/div[3]/button[2]")
+
+
+
+    # Product
+    locProd['Product_Add_To_Cart'] = (u.By.XPATH, '//a[text()="Add to cart"]')
+    locProd['Product_Undefined_Headline'] = (u.By.XPATH, '//h2[text()="undefined"]')
