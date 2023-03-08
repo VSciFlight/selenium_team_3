@@ -1,5 +1,6 @@
 import utils as u
-from locators import locators
+import locators
+
 
 class HomePage:
 
