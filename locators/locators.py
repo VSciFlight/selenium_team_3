@@ -3,6 +3,8 @@ import utils as u
 class Locator:
 
     loc = dict()
+    loc_prod = dict()
+
 
     # Header
     loc['Head_Home'] = (u.By.XPATH, '//a[text()="Home "]')
@@ -26,3 +28,7 @@ class Locator:
     loc['Items_Collection'] = (u.By.CSS_SELECTOR, '#tbodyid > div')  # item collection
 
 
+
+    # Product
+    loc_prod['Product_Add_To_Cart'] = (u.By.XPATH, '//a[text()="Add to cart"]')
+    loc_prod['Product_Undefined_Headline'] = (u.By.XPATH, '//h2[text()="undefined"]')
