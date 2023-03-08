@@ -2,7 +2,6 @@ import utils as u
 
 class Locator:
 
-    locProd = dict()
     locHome = dict()
 
 
@@ -56,6 +55,19 @@ class Locator:
 
 
 
+    locProd = dict()
+
     # Product
     locProd['Product_Add_To_Cart'] = (u.By.XPATH, '//a[text()="Add to cart"]')
     locProd['Product_Undefined_Headline'] = (u.By.XPATH, '//h2[text()="undefined"]')
+
+
+
+    # Login and Signup
+    locLog = dict()
+
+    locLog['Login_Username'] = (u.By.XPATH, '//*[@id="loginusername"]')
+    locLog['Login_Password'] = (u.By.XPATH, '//*[@id="loginpassword"]')
+
+    locLog['Signup_Username'] = (u.By.XPATH, '//*[@id="sign-username"]')
+    locLog['Signup_Password'] = (u.By.XPATH, '//*[@id="sign-password"]')
