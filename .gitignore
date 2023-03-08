@@ -5,3 +5,6 @@ __pycache__/utils.cpython-311.pyc
 tests/__pycache__/test_product.cpython-311.pyc
 __pycache__/locators.cpython-311.pyc
 __pycache__/utils.cpython-311.pyc
+__pycache__/utils.cpython-311.pyc
+tests/__pycache__/test_product.cpython-311.pyc
+*.pyc
