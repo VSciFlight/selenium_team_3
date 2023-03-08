@@ -1,6 +1,7 @@
 import utils as u
 
 class Locator:
+
     loc = dict()
 
     # Header
@@ -22,5 +23,6 @@ class Locator:
 
     # Home
     # Items
+    loc['Items_Collection'] = (u.By.CSS_SELECTOR, '#tbodyid > div')  # item collection
 
-    loc['Items_Collection'] = (u.By.CSS_SELECTOR, '#tbodyid > div')
+
