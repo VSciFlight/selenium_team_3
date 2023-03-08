@@ -10,4 +10,4 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from time import sleep
 
-import locators.locators as loca
+import locators as loca
