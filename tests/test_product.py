@@ -47,11 +47,13 @@ class TestProductPage(unittest.TestCase):
     def test_product_insane_product_id(self):
         """
         I wanted to have fun and destroy the url so I did the following
-        any product id above 9223372036854775807 will result in a blank page
+        any product id above 9223372036854775807 or equal to 0 will result in a blank page
         have fun
         technical explanation: apperantly the type of the idp parameters is int. So at first we tried the MAX_INT value 2147483647
         It proceeded so then tested
         p.s this is negative test
+
+        It can be much better to recieve Error 404 or redirection to homepage
         :return:
         """
         new_url = self.url + str(9223372036854775808)
@@ -60,6 +62,7 @@ class TestProductPage(unittest.TestCase):
         u.WDW(self.driver, 3).until(u.EC.invisibility_of_element_located(u.loca.Locator.loc_prod['Product_Undefined_Headline']), message="This page is blank")
 
         self.assertFalse(self.driver.find_elements(u.By.XPATH, '//h2[text()="undefined"]'))
+
 
     def tearDown(self):
         self.driver.close()
