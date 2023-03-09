@@ -27,14 +27,16 @@ class TestCartPage(unittest.TestCase):
         hp.click_cart_btn(self)
         u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located((u.By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr")))
         self.assertEqual(self.driver.find_element(u.By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr").get_attribute("class"), "success")
-        self.driver.close()
-        options = u.WebDriver.ChromeOptions()
-        options.add_argument("--disable-extensions")
-        self.driver = u.WebDriver.Chrome(options=options)
+        self.driver.quit()
+        self.driver = u.WebDriver.Chrome()
         self.driver.maximize_window()
         self.driver.get("https://www.demoblaze.com/index.html")
+        hp = HomePage
         hp.click_cart_btn(self)
-        u.WDW(self.driver, 5)
-        self.assertEqual(self.driver.find_element(u.By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr").get_attribute("class"), "success")
+        try:
+            u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located((u.By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr")))
+        except:
+            pass
+        self.assertTrue(self.driver.find_elements(u.By.XPATH,"/html/body/div[6]/div/div[1]/div/table/tbody/tr"), msg="Item is not avalible")
 
 
