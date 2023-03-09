@@ -38,5 +38,3 @@ class TestCartPage(unittest.TestCase):
         except:
             pass
         self.assertTrue(self.driver.find_elements(u.By.XPATH,"/html/body/div[6]/div/div[1]/div/table/tbody/tr"), msg="Item is not avalible")
-
-

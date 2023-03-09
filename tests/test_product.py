@@ -29,6 +29,7 @@ class TestProductPage(unittest.TestCase):
 
     def test_product_invalid_product(self):
         """
+        Product - Page - Invalid MAX product id doesn't exist (N)
         Test is taking invalid ID and checks the result of the page
         We mapped the products IDs and came to a result that the max valid id is 15
         so it means this is the last valid product link
@@ -47,6 +48,8 @@ class TestProductPage(unittest.TestCase):
 
     def test_product_insane_product_id(self):
         """
+        Product - Page - Invalid product content for non-existing product (N)
+
         I wanted to have fun and destroy the url so I did the following
         any product id above 9223372036854775807 or equal to 0 will result in a blank page
         have fun
