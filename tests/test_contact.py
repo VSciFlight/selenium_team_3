@@ -1,4 +1,3 @@
-import time
 import unittest
 import utils as u
 from pages.home import HomePage
@@ -56,12 +55,34 @@ class TestContactModal(unittest.TestCase):
         self.assertNotEqual(alert.text, "Thanks for the message!!")
         alert.accept()
 
-    def test_invalid_message_without_characters(self):
+    def test_invalid_message_without_char(self):
         cm = ContactModal
         cm.click_send_message_btn(self)
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
         self.assertNotEqual(alert.text, "Thanks for the message!!")
+        alert.accept()
+
+    def test_name_length_more_than_10_char(self):
+        cm = ContactModal
+        cm.set_contact_email(self, "Jhon237@gmail.com")
+        cm.set_contact_name(self, "asd"*4)
+        cm.set_message(self, "Hello everyone! \nYou have to many bugs")
+        cm.click_send_message_btn(self)
+        u.WDW(self.driver, 5).until(u.EC.alert_is_present())
+        alert = self.driver.switch_to.alert
+        self.assertNotEqual(alert.text, "Thanks for the message!!")
+        alert.accept()
+
+    def test_message_length_more_than_256_char(self):
+        cm = ContactModal
+        cm.set_contact_email(self, "Jhon237@gmail.com")
+        cm.set_contact_name(self, "Jhon")
+        cm.set_message(self, "Hello everyone!" * 130)
+        cm.click_send_message_btn(self)
+        u.WDW(self.driver, 5).until(u.EC.alert_is_present())
+        alert = self.driver.switch_to.alert
+        self.assertEqual(alert.text, "Thanks for the message!!")
         alert.accept()
 
     def test_X_btn(self):
