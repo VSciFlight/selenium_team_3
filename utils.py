@@ -12,6 +12,7 @@ from time import sleep
 
 
 
+
 def open_new_tab(driver, url):
 
     driver.switch_to.new_window('tab')
@@ -22,5 +23,6 @@ def open_new_tab(driver, url):
 def close_tab(driver):
     driver.close()
     sleep(2)
+
 
 
