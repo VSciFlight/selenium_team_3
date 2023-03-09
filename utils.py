@@ -10,4 +10,19 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from time import sleep
 
-import locators.locators as loca
+
+
+
+def open_new_tab(driver, url):
+
+    driver.switch_to.new_window('tab')
+    sleep(2)
+    driver.get(url)
+
+
+def close_tab(driver):
+    driver.close()
+    sleep(2)
+
+
+
