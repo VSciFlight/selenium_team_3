@@ -60,6 +60,10 @@ def login_acc(driver, username="", password=""):
 
 
 
+
+
+
+
 def rand_string(group = string.ascii_letters, n = 10):
     """
     this function is taking a group of letters and then takes a number.
@@ -69,4 +73,8 @@ def rand_string(group = string.ascii_letters, n = 10):
     :return:
     """
     return ''.join(random.choice(group) for i in range(n))
+
+
+
+
 
