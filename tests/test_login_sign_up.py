@@ -20,6 +20,10 @@ class TestLoginSignUp(unittest.TestCase):
 
 
     def test_sign_up(self):
+        """
+        Sign up - Modal - Create a user using the form
+        :return:
+        """
         login_signup.sign_up(self.driver, self.username, self.password)
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -32,6 +36,19 @@ class TestLoginSignUp(unittest.TestCase):
             print("The user exists")
             self.assertEqual(alert.text, "This user already exist.")
             alert.accept()
+
+    def test_sign_up_existing_user(self):
+        """
+        Sign up - Modal - Create an existing user (N)
+        :return:
+        """
+        login_signup.sign_up(self.driver, self.valid_username, self.valid_password)
+        u.WDW(self.driver, 5).until(u.EC.alert_is_present())
+        alert = self.driver.switch_to.alert
+
+        self.assertEqual(alert.text, "This user already exist.")
+        alert.accept()
+
 
 
     def test_sign_up_no_values(self):
@@ -51,6 +68,7 @@ class TestLoginSignUp(unittest.TestCase):
 
     def test_sign_up_lot_chars(self):
         """
+        Sign up - Modal - Create a user having more than 10 chars
         Test about username length, the requirement said it should contain less than 10 chars
         however it seems to accept more than 10 chars
         :return:
@@ -70,6 +88,7 @@ class TestLoginSignUp(unittest.TestCase):
 
     def test_sign_up_user_only(self):
         """
+        Sign up - Modal - Create account using one field (N)
         test sign up with username only,
         The error I should get is indicator of "Password missing" or something along these lines
         However I don't get those and it returns "Please fill out Username and Password." as alert message.
@@ -87,6 +106,7 @@ class TestLoginSignUp(unittest.TestCase):
 
     def test_sign_up_pass_only(self):
         """
+        Sign up - Modal - Create account using one field (N)
         test sign up with password only,
         The error I should get is indicator of "Password missing" or something along these lines
         However I don't get those and it returns "Please fill out Username and Password." as alert message.
@@ -104,6 +124,9 @@ class TestLoginSignUp(unittest.TestCase):
 
     def test_login(self):
         """
+        Log in - Modal - Log into new account
+        Log in - Modal - Log into existing account
+        Log in - Modal - Login using special characters (N, htmlchars)
         Tests you can create a user and log into it
         :return:
         """
@@ -124,6 +147,7 @@ class TestLoginSignUp(unittest.TestCase):
 
     def test_login_invalid(self):
         """
+        Log in - Modal - Log into non-existing account (N)
         Test that you cannot log into non-existing account
         :return:
         """
@@ -137,6 +161,11 @@ class TestLoginSignUp(unittest.TestCase):
 
 
     def test_login_no_values(self):
+        """
+        Log in - Modal - Log into non-existing account (N)
+        Test login with no values
+        :return:
+        """
         login_signup.login_acc(self.driver, "", "")
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
@@ -148,6 +177,11 @@ class TestLoginSignUp(unittest.TestCase):
 
 
     def test_login_valid_user(self):
+        """
+        Log in - Modal - Log into existing account
+        
+        :return:
+        """
         login_signup.login_acc(self.driver, self.valid_username, "")
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
@@ -182,6 +216,11 @@ class TestLoginSignUp(unittest.TestCase):
 
 
     def test_login_pass_only(self):
+        """
+        Log in - Modal - Login using one field (N)
+
+        :return:
+        """
         login_signup.login_acc(self.driver, "", self.password)
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
@@ -194,6 +233,9 @@ class TestLoginSignUp(unittest.TestCase):
 
     def test_autolog_in_new_tab(self):
         """
+        Log In - Cookie - Log into account, close the tab and enter the site again in a new tab
+        Log In - Cookie - Log into account, open a new tab with the site and user will be logged
+
         The case is logging into the site and then opening new tab and checking
         wether is connected user is connected or not
         :return:
@@ -211,6 +253,7 @@ class TestLoginSignUp(unittest.TestCase):
 
     def test_autolog_after_quitting_browser(self):
         """
+        Log In - Cookie - User will be logged in after he logged in, closed the browser and open the site again in a browser
         The case is logging into account and then closing the browser
         The expectation is to be logged in when logging into the site again
 
@@ -234,6 +277,8 @@ class TestLoginSignUp(unittest.TestCase):
 
     def test_user_cookie_change(self):
         """
+        Log In - Cookie - logging into account using cookies (N)
+
         Test that takes the cookie and test if the user can use the cookie to log in using cookies
         SECURITY MEASURE
 

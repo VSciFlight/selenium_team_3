@@ -39,6 +39,8 @@ class TestCartPage(unittest.TestCase):
             pass
         self.assertTrue(self.driver.find_elements(u.By.XPATH,"/html/body/div[6]/div/div[1]/div/table/tbody/tr"), msg="Item is not avalible")
 
+
+
 #######################################################################################################
     def test_add_item_to_cart(self):
         u.sleep(3)
@@ -250,5 +252,3 @@ class TestCartPage(unittest.TestCase):
         ok_button = self.driver.find_element(u.By.XPATH, '/html/body/div[10]/div[7]/div/button')
         ok_button.click()
         u.sleep(4)
-
-
