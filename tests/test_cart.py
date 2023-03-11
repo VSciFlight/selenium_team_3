@@ -17,6 +17,11 @@ class TestCartPage(unittest.TestCase):
 
 
     def test_cart_recovery(self):
+        """
+        test that verify if item was saved in the cart
+        after user closed the browser window
+        :return:
+        """
         u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located((u.By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a"))).click()
         u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located((u.By.XPATH, "/html/body/div[5]/div/div[2]/div[2]/div/a"))).click()
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
@@ -37,6 +42,6 @@ class TestCartPage(unittest.TestCase):
             u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located((u.By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr")))
         except:
             pass
-        self.assertTrue(self.driver.find_elements(u.By.XPATH,"/html/body/div[6]/div/div[1]/div/table/tbody/tr"), msg="Item is not avalible")
+        self.assertTrue(self.driver.find_elements(u.By.XPATH,"/html/body/div[6]/div/div[1]/div/table/tbody/tr"), msg="Item not saved in the cart")
 
 
