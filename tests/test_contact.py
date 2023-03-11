@@ -30,7 +30,7 @@ class TestContactModal(unittest.TestCase):
         cm = ContactModal
         cm.set_contact_email(self, "Jhon237@gmail.com")
         cm.set_contact_name(self, "Jhon")
-        cm.set_message(self, "Hello everyone! \nYou have to many bugs")
+        cm.set_message(self, "Hello everyone! \nYou have too many bugs")
         cm.click_send_message_btn(self)
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
