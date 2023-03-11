@@ -179,7 +179,7 @@ class TestLoginSignUp(unittest.TestCase):
     def test_login_valid_user(self):
         """
         Log in - Modal - Log into existing account
-        
+
         :return:
         """
         login_signup.login_acc(self.driver, self.valid_username, "")
@@ -306,4 +306,4 @@ class TestLoginSignUp(unittest.TestCase):
 
 
     def tearDown(self):
-        self.driver.close()
+        self.driver.quit()
