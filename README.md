@@ -30,7 +30,7 @@ You are welcomed to dig in our project and look for the tests and bugs
 * run_all.cmd runs all the tests in a sequence, non-stop
 
 <h3>Requirements</h3>
-in order to run the tests locally you have to download (get git) the git and create new virtual environment. \
+in order to run the tests locally you have to download (get git) the git and create new virtual environment. <br>
 We used Python 3.10.
 
 #### Packages:
