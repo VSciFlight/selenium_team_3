@@ -6,6 +6,7 @@ Appendencies: [Traceability Table in Google Sheets](https://docs.google.com/spre
 ### Background:
 We are 4 QA students in a college called "IITC College" in Ramat Gan, Israel. <br>
 As part of our studying we received a project to test [demoblaze.com](https://demoblaze.com) - find bugs, asking questions, test where the site could fail. <br>
+We were required to use Selenium package in order to automate the tests. \
 After one week of work around this project we finally finished with the project.
 
 ### Workflow:
