@@ -1,6 +1,7 @@
 # Selenium Project Team 3
 Creators: Alon, Eliav, Artium, Nir \
-Date: 12/3/2023 \ 
+Date: 12/3/2023 \
+Appendencies: [Traceability Table in Google Sheets](https://docs.google.com/spreadsheets/d/1VvUd2FPTsDQSyj9s7KK2liYoMto5XbzG_3cb7UyAajo/edit?usp=sharing)
 
 ## [Demoblaze](https://demoblaze.com/)
 <https://demoblaze.com> is a demo website for electronics e-commerce store \
@@ -26,18 +27,4 @@ You are welcomed to dig in our project and look for the tests and bugs
 * utils.py is a file which takes in the imports 
 * locators.py is a file which indexes elements in the webpage
 
-## Errors we found
-<ol>
-    <li>UI issues:
-    <ol>
-        <li>
-        Product Page: <br>
-        <div style="display: inline-block">
-            <img src="media/bugs_product_ui_slideshow.png" width="600"> <br>
-            <img src="media/bugs_product_ui_resp1.png" width="600"> <br>
-            <img src="media/bugs_product_ui_resp2.png" width="600">
-        </div>
-        </li>      
-    </ol>
-    </li>
-</ol>
+### [Sum of errors we discovered can be found here](https://docs.google.com/spreadsheets/d/1VvUd2FPTsDQSyj9s7KK2liYoMto5XbzG_3cb7UyAajo/edit?usp=sharing)
