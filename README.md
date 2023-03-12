@@ -26,5 +26,6 @@ You are welcomed to dig in our project and look for the tests and bugs
 * Tests folder contains the test suites and test cases for each requirement 
 * utils.py is a file which takes in the imports 
 * locators.py is a file which indexes elements in the webpage
+* run_all.cmd runs all the tests in a sequence, non stop
 
 ### [Sum of errors we discovered can be found here](https://docs.google.com/spreadsheets/d/1VvUd2FPTsDQSyj9s7KK2liYoMto5XbzG_3cb7UyAajo/edit?usp=sharing)
