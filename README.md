@@ -34,7 +34,6 @@ in order to run the tests locally you have to download (get git) the git and cre
 We used Python 3.10.
 
 #### Packages:
-
 <ul>
     <li>Selenium</li>
     <li>Requests</li>

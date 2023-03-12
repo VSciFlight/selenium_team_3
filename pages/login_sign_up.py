@@ -58,12 +58,6 @@ def login_acc(driver, username="", password=""):
     login_btn.click()
 
 
-
-
-
-
-
-
 def rand_string(group = string.ascii_letters, n = 10):
     """
     this function is taking a group of letters and then takes a number.
