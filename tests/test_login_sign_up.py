@@ -8,9 +8,17 @@ import pages.login_sign_up as login_signup
 
 class TestLoginSignUp(unittest.TestCase):
     def setUp(self):
-        self.url = 'https://demoblaze.com/index.html'
-        self.driver = u.WebDriver.Chrome()
-        self.driver.get(self.url)
+        try:
+            self.url = 'https://demoblaze.com/index.html'
+            options = u.WebDriver.ChromeOptions()
+            options.add_argument("--disable-extensions")
+            self.driver = u.WebDriver.Chrome(options=options)
+            self.driver.maximize_window()
+            self.driver.get(self.url)
+
+        except AssertionError:
+            self.driver.quit()
+
 
         self.username = login_signup.rand_string(n=10)
         self.password = login_signup.rand_string(group=string.printable,n=10)
@@ -266,7 +274,10 @@ class TestLoginSignUp(unittest.TestCase):
         self.driver.quit()
         u.sleep(2)
 
-        self.driver = u.WebDriver.Chrome()  # re instantiaite driver
+        options = u.WebDriver.ChromeOptions()
+        options.add_argument("--disable-extensions")
+        self.driver = u.WebDriver.Chrome(options=options)
+        self.driver.maximize_window()
         self.driver.get(self.url)
 
         u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(locators.Locator.locLog['Welcome']))
@@ -292,8 +303,12 @@ class TestLoginSignUp(unittest.TestCase):
         self.driver.quit()
         u.sleep(2)
 
-        self.driver = u.WebDriver.Chrome()  # re instantiaite driver
+        options = u.WebDriver.ChromeOptions()
+        options.add_argument("--disable-extensions")
+        self.driver = u.WebDriver.Chrome(options=options)
+        self.driver.maximize_window()
         self.driver.get(self.url)
+
         for cookie in user_data:
             self.driver.add_cookie(cookie)
 
