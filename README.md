@@ -13,8 +13,11 @@ Before we started building tests we had to explore the site, as no one was famil
 We started with exploratory tests, trying to figure out the content and purpose of the site. <br>
 Afterwards we started to think about the structure of the project files. \
 We decided to go with POM (Page Object Model) model and start build the structure. \
+![UML](media/UML.png)
 First thing we wanted was to import our needed packages and an easy way to pull those at once. We created a file called "utils.py" which includes the package imports we need for most of the project.
 ```
+first few lines of utils.py: 
+
 import selenium
 import requests
 
@@ -24,7 +27,7 @@ from selenium.webdriver.common.keys import Keys
 ```
 We needed a "tests" package to include the automatic test cases. \
 We also wanted a "pages" package to include functions within pages, thus, for example, we can log in easily from everywhere we need to. \
-After a little more time we realized we can optimize the work when using "locators". the locators file include a class called "Locator" and dictionaries of web elements we gathered to easily access them. \
+After a little more time we realized we can optimize the work when using "locators". the locators file include a class called "Locator" and dictionaries of web elements we gathered to easily access them.
 ```
 first few lines of locators.py:
 
