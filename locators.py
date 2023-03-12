@@ -4,7 +4,6 @@ class Locator:
 
     locHome = dict()
 
-
     # Header
     locHome['Head_Home'] = (u.By.XPATH, '//a[text()="Home "]')
     locHome['Head_Contact'] = (u.By.XPATH, '//a[text()="Contact"]')

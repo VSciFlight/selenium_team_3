@@ -1,5 +1,4 @@
 import selenium
-import requests
 
 from selenium import webdriver as WebDriver
 from selenium.webdriver.common.by import By
