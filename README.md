@@ -1,46 +1,43 @@
-# selenium_team_3
-selenium_team_3: Alon, Eliav, Artium, Nir
+# Selenium Project Team 3
+Creators: Alon, Eliav, Artium, Nir \
+Date: 12/3/2023 \ 
 
+## [Demoblaze](https://demoblaze.com/)
+<https://demoblaze.com> is a demo website for electronics e-commerce store \
+The site sells Phones, Laptops and Monitors
 
-File conventions:
+![Demoblaze Homepage](/media/site_main_page.png "Demoblaze Homepage")
 
-* A docstring ("""text""") should be after every decleration of functions and classes
-* A comment should appear besides loops and variables describing their
-* NO IF NESTING ABOVE 2. Means you do not nest if statements more than two times.
+In this project we had to make tests on this site. \
+Meaning we had to assess how valid is the website to operate successfully? 
 
-utils.py includes the whole external imports for the projects
+The short answer is: NO \
+The long answer has to dig in the suggestive requirements:
+* Homepage - The main page
+* Contact - A modal
+* About Us - A modal
+* Cart - A site contains the cart info
+* Log In - A modal which allows users to log in
+* Sign Up - A modal which creates users
 
-FUNCTIONS:
-  - small letters
-  - spaces replaces with underscores ("_")
-  - test functions must start with "test_"
-  
-CLASS:
-  - Camel Case. for example BaseHomePage
-  - no spaces
-  - test classes must start with the word "test_"
-  
+You are welcomed to dig in our project and look for the tests and bugs 
+* Pages folder contains functions relevant for certain pages 
+* Tests folder contains the test suites and test cases for each requirement 
+* utils.py is a file which takes in the imports 
+* locators.py is a file which indexes elements in the webpage
 
-Packages:
-  - Selenium
-  - Requests
-  - unittest
-
-
-
- TEST SUITE
- Test Suite is defined by a class in a file.
- Test Case is defined as a function within the Test Suite
- 
- for example:
-```
-    class TestStocks:
-      def test_stock_price():
-        <code>
-      
-      def test_stock_value():
-        <code>
-```
-* TestStocks - a test suite (class)
-* test_stock_price - a test case (function)
-* test_stock_value - a test case (function)
+## Errors we found
+<ol>
+    <li>UI issues:
+    <ol>
+        <li>
+        Product Page: <br>
+        <div style="display: inline-block">
+            <img src="media/bugs_product_ui_slideshow.png" width="600"> <br>
+            <img src="media/bugs_product_ui_resp1.png" width="600"> <br>
+            <img src="media/bugs_product_ui_resp2.png" width="600">
+        </div>
+        </li>      
+    </ol>
+    </li>
+</ol>
