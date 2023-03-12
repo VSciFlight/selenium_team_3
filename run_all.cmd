@@ -1,1 +1,1 @@
-python -m unittest discover -v > test_sum.txt
+python -m unittest discover -v
