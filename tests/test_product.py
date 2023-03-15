@@ -1,7 +1,8 @@
 import random
 import unittest
-import locators
-import utils as u
+import locators.locators_index as xloc
+from src import utils as u
+
 
 class TestProductPage(unittest.TestCase):
 
@@ -20,7 +21,7 @@ class TestProductPage(unittest.TestCase):
         for i in range(1, 16):
             new_url = self.url + str(i)
             self.driver.get(new_url)
-            u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located(locators.Locator.locProd['Product_Add_To_Cart']))
+            u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located(xloc.ProductLocatorlocProd['Product_Add_To_Cart']))
 
             # self.driver.find_element(u.By.XPATH, '//h2[text()="undefined"]').is_displayed()
             self.assertEqual(self.driver.current_url, new_url)
@@ -41,7 +42,7 @@ class TestProductPage(unittest.TestCase):
         new_url = self.url + str(random.randint(16,9223372036854775807))   # WHY 9223372036854775807? see below
         self.driver.get(new_url)
 
-        u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located(locators.Locator.locProd['Product_Add_To_Cart']))
+        u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located(xloc.ProductLocator.locProd['Product_Add_To_Cart']))
 
         self.assertTrue(self.driver.find_elements(u.By.XPATH, '//h2[text()="undefined"]'))
 
@@ -63,7 +64,7 @@ class TestProductPage(unittest.TestCase):
         new_url = self.url + str(9223372036854775808)
         self.driver.get(new_url)
 
-        u.WDW(self.driver, 3).until(u.EC.invisibility_of_element_located(locators.Locator.locProd['Product_Undefined_Headline']), message="This page is blank")
+        u.WDW(self.driver, 3).until(u.EC.invisibility_of_element_located(xloc.ProductLocator.locProd['Product_Undefined_Headline']), message="This page is blank")
 
         self.assertFalse(self.driver.find_elements(u.By.XPATH, '//h2[text()="undefined"]'))
 

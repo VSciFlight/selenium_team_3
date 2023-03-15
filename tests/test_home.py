@@ -1,8 +1,7 @@
 import unittest
 
-import locators
-import utils as u
-from pages.home import HomePage
+from src import utils as u
+from src.pages.home import HomePage
 
 
 class TestHomePage(unittest.TestCase):

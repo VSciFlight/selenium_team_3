@@ -1,5 +1,5 @@
 import unittest
-import utils as u
+from src import utils as u
 from pages.home import HomePage
 from pages.contact import ContactModal
 

@@ -1,30 +1,16 @@
 import string
-
-import locators
-import utils as u
-import unittest
-import pages.login_sign_up as login_signup
+from src.pages.login_sign_up import LoginSignUpPage
+from src.locators.locators_index import LoginLocator
+from src import utils as u
 
 
-class TestLoginSignUp(unittest.TestCase):
-    def setUp(self):
-        try:
-            self.url = 'https://demoblaze.com/index.html'
-            options = u.WebDriver.ChromeOptions()
-            options.add_argument("--disable-extensions")
-            self.driver = u.WebDriver.Chrome(options=options)
-            self.driver.maximize_window()
-            self.driver.get(self.url)
 
-        except AssertionError:
-            self.driver.quit()
+class TestLoginSignUp(u.WebDriverSetUp):
+    username = LoginSignUpPage.rand_string(n=10)
+    password = LoginSignUpPage.rand_string(group=string.printable,n=10)
 
-
-        self.username = login_signup.rand_string(n=10)
-        self.password = login_signup.rand_string(group=string.printable,n=10)
-
-        self.valid_username = "qazwsxedcqaz"
-        self.valid_password = "qazwsxedcqaz"
+    valid_username = "qazwsxedcqaz"
+    valid_password = "qazwsxedcqaz"
 
 
     def test_sign_up(self):
@@ -32,7 +18,7 @@ class TestLoginSignUp(unittest.TestCase):
         Sign up - Modal - Create a user using the form
         :return:
         """
-        login_signup.sign_up(self.driver, self.username, self.password)
+        LoginSignUpPage.sign_up(self, self.username, self.password)
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
 
@@ -45,12 +31,13 @@ class TestLoginSignUp(unittest.TestCase):
             self.assertEqual(alert.text, "This user already exist.")
             alert.accept()
 
+
     def test_sign_up_existing_user(self):
         """
         Sign up - Modal - Create an existing user (N)
         :return:
         """
-        login_signup.sign_up(self.driver, self.valid_username, self.valid_password)
+        LoginSignUpPage.sign_up(self, self.valid_username, self.valid_password)
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
 
@@ -60,7 +47,7 @@ class TestLoginSignUp(unittest.TestCase):
 
 
     def test_sign_up_no_values(self):
-        login_signup.sign_up(self.driver, "", "")
+        LoginSignUpPage.sign_up(self, "", "")
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -81,8 +68,8 @@ class TestLoginSignUp(unittest.TestCase):
         however it seems to accept more than 10 chars
         :return:
         """
-        tmp_user = login_signup.rand_string(n=11)
-        login_signup.sign_up(self.driver, tmp_user, self.password)
+        tmp_user = LoginSignUpPage.rand_string(n=11)
+        LoginSignUpPage.sign_up(self, tmp_user, self.password)
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -102,7 +89,7 @@ class TestLoginSignUp(unittest.TestCase):
         However I don't get those and it returns "Please fill out Username and Password." as alert message.
         :return:
         """
-        login_signup.sign_up(self.driver, self.username, "")
+        LoginSignUpPage.sign_up(self, self.username, "")
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -120,7 +107,7 @@ class TestLoginSignUp(unittest.TestCase):
         However I don't get those and it returns "Please fill out Username and Password." as alert message.
         :return:
         """
-        login_signup.sign_up(self.driver, "", self.password)
+        LoginSignUpPage.sign_up(self, "", self.password)
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -138,16 +125,16 @@ class TestLoginSignUp(unittest.TestCase):
         Tests you can create a user and log into it
         :return:
         """
-        login_signup.sign_up(self.driver, self.username, self.password)
+        LoginSignUpPage.sign_up(self, self.username, self.password)
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
 
         self.assertEqual(alert.text, "Sign up successful.")
         alert.accept()
 
-        login_signup.login_acc(self.driver, self.username, self.password)
+        LoginSignUpPage.login_acc(self, self.username, self.password)
 
-        u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(locators.Locator.locLog['Welcome']))
+        u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(LoginLocator.locLog['Welcome']))
         welc_user = self.driver.find_element(u.By.XPATH, '//*[@id="nameofuser"]')
 
         self.assertEqual(welc_user.text, 'Welcome ' + self.username)
@@ -159,7 +146,7 @@ class TestLoginSignUp(unittest.TestCase):
         Test that you cannot log into non-existing account
         :return:
         """
-        login_signup.login_acc(self.driver, self.username, self.password)
+        LoginSignUpPage.login_acc(self, self.username, self.password)
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -174,7 +161,7 @@ class TestLoginSignUp(unittest.TestCase):
         Test login with no values
         :return:
         """
-        login_signup.login_acc(self.driver, "", "")
+        LoginSignUpPage.login_acc(self, "", "")
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -190,7 +177,7 @@ class TestLoginSignUp(unittest.TestCase):
 
         :return:
         """
-        login_signup.login_acc(self.driver, self.valid_username, "")
+        LoginSignUpPage.login_acc(self, self.valid_username, self.valid_password)
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -202,7 +189,7 @@ class TestLoginSignUp(unittest.TestCase):
 
 
     def test_login_invalid_user(self):
-        login_signup.login_acc(self.driver, self.username, "")
+        LoginSignUpPage.login_acc(self, self.username, "")
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -213,7 +200,7 @@ class TestLoginSignUp(unittest.TestCase):
 
 
     def test_login_invalid_password(self):
-        login_signup.login_acc(self.driver, self.valid_username, self.password)
+        LoginSignUpPage.login_acc(self, self.valid_username, self.password)
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -229,7 +216,7 @@ class TestLoginSignUp(unittest.TestCase):
 
         :return:
         """
-        login_signup.login_acc(self.driver, "", self.password)
+        LoginSignUpPage.login_acc(self, "", self.password)
 
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
@@ -249,11 +236,12 @@ class TestLoginSignUp(unittest.TestCase):
         :return:
         """
 
-        login_signup.login_acc(self.driver, self.valid_username, self.valid_password)
+        LoginSignUpPage.login_acc(self, self.valid_username, self.valid_password)
 
         u.open_new_tab(self.driver, self.url)
 
-        u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(locators.Locator.locLog['Welcome']))
+
+        u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(LoginLocator.locLog['Welcome']))
         welc_user = self.driver.find_element(u.By.XPATH, '//*[@id="nameofuser"]')
 
         self.assertEqual(welc_user.text, 'Welcome ' + self.valid_username)
@@ -268,19 +256,14 @@ class TestLoginSignUp(unittest.TestCase):
         FAILED
         :return:
         """
-        login_signup.login_acc(self.driver, self.valid_username, self.valid_password)
-        u.sleep(1)
-
-        self.driver.quit()
+        LoginSignUpPage.login_acc(self, self.valid_username, self.valid_password)
         u.sleep(2)
 
-        options = u.WebDriver.ChromeOptions()
-        options.add_argument("--disable-extensions")
-        self.driver = u.WebDriver.Chrome(options=options)
-        self.driver.maximize_window()
-        self.driver.get(self.url)
+        self.driver.quit()
 
-        u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(locators.Locator.locLog['Welcome']))
+        u.WebDriverSetUp.setUp(self)
+
+        u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(LoginLocator.locLog['Welcome']))
         welc_user = self.driver.find_element(u.By.XPATH, '//*[@id="nameofuser"]')
 
         self.assertEqual(welc_user.text, 'Welcome ' + self.valid_username)
@@ -295,7 +278,7 @@ class TestLoginSignUp(unittest.TestCase):
 
         :return:
         """
-        login_signup.login_acc(self.driver, self.valid_username, self.valid_password)
+        LoginSignUpPage.login_acc(self, self.valid_username, self.valid_password)
         u.sleep(1)
 
         user_data = self.driver.get_cookies()
@@ -314,7 +297,7 @@ class TestLoginSignUp(unittest.TestCase):
 
         self.driver.refresh()
 
-        u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(locators.Locator.locLog['Welcome']))
+        u.WDW(self.driver, 10).until(u.EC.visibility_of_element_located(LoginLocator.locLog['Welcome']))
         welc_user = self.driver.find_element(u.By.XPATH, '//*[@id="nameofuser"]')
 
         self.assertEqual(welc_user.text, 'Welcome ' + self.valid_username)
