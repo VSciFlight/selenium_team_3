@@ -1,45 +1,42 @@
 from src import utils as u
 from src.pages.header import HeaderPage
 from src.locators.locators_index import CartLocator
-
+from src.locators.locators_index import HomepageLocator
+from src.locators.locators_index import ProductLocator
+from src.pages.cart import CartPage
 
 class TestCartPage(u.WebDriverSetUp):
 
     def test_cart_recovery(self):
-        u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located((u.By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a"))).click()
-        u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located((u.By.XPATH, "/html/body/div[5]/div/div[2]/div[2]/div/a"))).click()
-
+        CartPage.add_product_to_cart(self)
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
         self.assertEqual(alert.text, "Product added")
         alert.accept()
 
+
         HeaderPage.click_cart_btn(self)
         u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located(CartLocator.locCart['Cart_Rows']))
-        self.assertEqual(self.driver.find_element(u.By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr").get_attribute("class"), "success")
 
+        self.assertEqual(self.driver.find_element(u.By.XPATH, '//*[@id="tbodyid"]/tr').get_attribute("class"), "success")
+
+        self.driver.quit()
         u.WebDriverSetUp.setUp(self)
 
         HeaderPage.click_cart_btn(self)
+
         try:
             u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located(CartLocator.locCart['Cart_Rows']))
 
         except:
-            self.assertTrue(self.driver.find_elements(u.By.XPATH,"/html/body/div[6]/div/div[1]/div/table/tbody/tr"), msg="Item is not avalible")
+            self.assertTrue(self.driver.find_elements(u.By.XPATH, '//*[@id="tbodyid"]/tr'), msg="No items in the cart")
 
 
 
 #######################################################################################################
 
     def test_add_item_to_cart(self):
-        u.sleep(3)
-        self.driver.find_element(u.By.XPATH, '//*[@id="tbodyid"]/div[1]/div/div/h4/a').click()
-        u.sleep(3)
-
-        self.add_cart = self.driver.find_element(u.By.XPATH, '//*[@id="tbodyid"]/div[2]/div/a')
-        self.add_cart.click()
-        u.sleep(3)
-
+        CartPage.add_product_to_cart(self)
         u.WDW(self.driver, 3).until(u.EC.alert_is_present())
         self.alert = self.driver.switch_to.alert
         self.alert.accept()
@@ -47,24 +44,21 @@ class TestCartPage(u.WebDriverSetUp):
         self.driver.find_element(u.By.XPATH, '//*[@id="cartur"]').click()
         u.sleep(3)
 
-
+        self.assertTrue(u.WDW(self.driver, 5).until(u.EC.visibility_of_element_located(CartLocator.locCart['Cart_Rows'])))
 
     def test_remove_item_from_cart(self):
-        u.sleep(3)
-        self.driver.find_element(u.By.XPATH, '//*[@id="tbodyid"]/div[3]/div/div/h4/a').click()
-        u.sleep(3)
-        self.Add_to_cart_button = self.driver.find_element(u.By.XPATH, '//*[@id="tbodyid"]/div[2]/div/a')
-        self.Add_to_cart_button.click()
-        u.sleep(3)
+        CartPage.add_product_to_cart(self)
         u.WDW(self.driver, 5).until(u.EC.alert_is_present())
         alert = self.driver.switch_to.alert
         alert.accept()
+
         self.driver.find_element(u.By.XPATH, '//*[@id="cartur"]').click()
         u.sleep(2)
-        delete = self.driver.find_element(u.By.XPATH, '//*[@id="tbodyid"]/tr/td[4]/a')
-        delete.click()
-        u.sleep(3)
-        self.assertTrue(True)
+        self.driver.find_element(u.By.XPATH, '//*[@id="tbodyid"]/tr/td[4]/a').click()  #delete button
+        u.sleep(2)
+
+        cart_row = self.driver.find_elements(CartLocator.locCart['Cart_Rows'])
+        self.assertFalse(cart_row)
 
 
 

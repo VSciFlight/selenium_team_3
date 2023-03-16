@@ -1,3 +1,5 @@
+import random
+
 from src import utils as u
 
 
@@ -24,5 +26,7 @@ class HomepageLocator:
     locHome['Slide_Right_Arrow'] = (u.By.XPATH, "/html/body/nav/div[2]/div/a[2]/span[1]")
     locHome['Slide_Left_Arrow'] = (u.By.XPATH, "/html/body/nav/div[2]/div/a[1]/span[1]")
     locHome['Slide_LeftSlide_indicator'] = (u.By.XPATH, "/html/body/nav/div[2]/div/ol/li[1]")
-    locHome['Slide_MidleSlide_indicator'] = (u.By.XPATH, "/html/body/nav/div[2]/div/ol/li[2]")
+    locHome['Slide_MiddleSlide_indicator'] = (u.By.XPATH, "/html/body/nav/div[2]/div/ol/li[2]")
     locHome['Slide_RightSlide_indicator'] = (u.By.XPATH, "/html/body/nav/div[2]/div/ol/li[3]")
+
+    locHome['Random_Product'] = (u.By.XPATH, f'//*[@id="tbodyid"]/div[{random.randint(1,9)}]/div/div/h4/a')
